@@ -6,17 +6,30 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>Archives: 2024/2 | Hexo</title>
+  <title>记录一次vscode扩展开发过程 | Hexo</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/archives/2024/02/index.html">
+  <meta name="description" content="最近在做基于vform的动态表单工具时，发现vform官方文档中提供了一个vscode扩展应用，可以在vscode中直接打开vform设计器，在设计好表单后直接将模板文件保存到工作区中，大大提升了前端项目的开发效率，于是就构思是否自己也能实现一个类似的插件，结合动态表单工具，提升一定的工作效率？ 功能描述期望在右键单击工作区文件夹的时候，能够在右键菜单中添加一项选项，点击选项后在vscode内部打">
+<meta property="og:type" content="article">
+<meta property="og:title" content="记录一次vscode扩展开发过程">
+<meta property="og:url" content="http://example.com/2024/02/23/20240223.1/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="最近在做基于vform的动态表单工具时，发现vform官方文档中提供了一个vscode扩展应用，可以在vscode中直接打开vform设计器，在设计好表单后直接将模板文件保存到工作区中，大大提升了前端项目的开发效率，于是就构思是否自己也能实现一个类似的插件，结合动态表单工具，提升一定的工作效率？ 功能描述期望在右键单击工作区文件夹的时候，能够在右键菜单中添加一项选项，点击选项后在vscode内部打">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/tecgo/images/20240227_2.png">
+<meta property="og:image" content="http://example.com/tecgo/images/20240227_3.png">
+<meta property="og:image" content="http://example.com/tecgo/images/20240227_4.png">
+<meta property="og:image" content="http://example.com/tecgo/images/20240227_2.png">
+<meta property="og:image" content="http://example.com/tecgo/images/20240227_5.png">
+<meta property="article:published_time" content="2024-02-23T03:47:42.155Z">
+<meta property="article:modified_time" content="2024-02-27T07:06:07.344Z">
 <meta property="article:author" content="Aimmarc">
+<meta property="article:tag" content="vscode">
+<meta property="article:tag" content="vscode扩展">
+<meta property="article:tag" content="前端技术">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/tecgo/images/20240227_2.png">
   
     <link rel="alternative" href="/tecgo/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -207,41 +220,151 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-20240223.1" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/tecgo/archives/2024" class="archive-year">2024</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/tecgo/2024/02/23/20240223.1/" class="archive-article-date">
-        <time datetime="2024-02-23T03:47:42.155Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-02-23</time>
-</a>
-
-        </div>
-    	 
+      <header class="article-header">
   
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/tecgo/2024/02/23/20240223.1/" target="_blank">记录一次vscode扩展开发过程</a>
   
+    <h1 class="article-title" itemprop="name">
+      记录一次vscode扩展开发过程
     </h1>
   
 
 
-        <div class="article-info info-on-right">
+  
+  
+        
+        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span>
+
+<a href="/tecgo/2024/02/23/20240223.1/" class="archive-article-date">
+        <time datetime="2024-02-23T03:47:42.155Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-02-23</time>
+</a>
+
+  
+  
+    
+<div style="margin-top:10px;">
+  <span class="post-time">
+    <span class="post-meta-item-icon">
+      <!-- fonts.scss -->
+      <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
+      <i class="icon-statistics"></i>
+      <span class="post-meta-item-text"> 字数统计:</span>
+      <span class="post-count">989字</span>
+    </span>
+  </span>
+
+  <span class="post-time">
+    &nbsp; | &nbsp;
+    <span class="post-meta-item-icon">
+      <i class="icon-book icon"></i>
+      <span class="post-meta-item-text"> 阅读时长≈</span>
+      <span class="post-count">4分</span>
+    </span>
+  </span>
+</div>
+
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p>最近在做基于vform的动态表单工具时，发现vform官方文档中提供了一个vscode扩展应用，可以在vscode中直接打开vform设计器，在设计好表单后直接将模板文件保存到工作区中，大大提升了前端项目的开发效率，于是就构思是否自己也能实现一个类似的插件，结合动态表单工具，提升一定的工作效率？</p>
+<h3 id="功能描述"><a href="#功能描述" class="headerlink" title="功能描述"></a>功能描述</h3><p>期望在右键单击工作区文件夹的时候，能够在右键菜单中添加一项选项，点击选项后在vscode内部打开动态表单设计器，在设计器中将表单设计好后，使用设计器的保存文件到本地功能，将文件自动保存到当前文件夹中。<br><img src="/tecgo/images/20240227_2.png" alt="打开tc vform面板"></p>
+<h3 id="扩展开发"><a href="#扩展开发" class="headerlink" title="扩展开发"></a>扩展开发</h3><p>vscode扩展的开发主要依赖</p>
+<h4 id="环境准备-依赖安装"><a href="#环境准备-依赖安装" class="headerlink" title="环境准备&#x2F;依赖安装"></a>环境准备&#x2F;依赖安装</h4><p>安装yo、generator-code这两个npm库备用，后面我们将会使用到它们。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install yo generator-code -g</span><br></pre></td></tr></table></figure>
+<p>使用yo code命令来生成一个vscode扩展代码库</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yo code</span><br></pre></td></tr></table></figure>
+<p>等待命令执行完毕，会得到一个结构大致如下的目录，我们的扩展开发就将在这个目录中进行。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">|-- test</span><br><span class="line">|-- extension.js                     // 插件入口文件，插件的逻辑在此完成</span><br><span class="line">|-- CHANGELOG.md</span><br><span class="line">|-- package-lock.json</span><br><span class="line">|-- package.json</span><br><span class="line">|-- README.md                        // 插件说明 README，发布后会展示</span><br><span class="line">|-- jsconfig.json</span><br><span class="line">|-- .eslintrc.json</span><br><span class="line">|-- vsc-extension-quickstart.md</span><br></pre></td></tr></table></figure>
+<h4 id="运行和调试"><a href="#运行和调试" class="headerlink" title="运行和调试"></a>运行和调试</h4><p>直接使用vscode打开这个目录，依次选择运行-&gt;启动调试，vscode就会使用调试模式运行当前插件。<br><img src="/tecgo/images/20240227_3.png" alt="运行调试"></p>
+<h4 id="创建右键菜单和命令"><a href="#创建右键菜单和命令" class="headerlink" title="创建右键菜单和命令"></a>创建右键菜单和命令</h4><p>在package.json中，找到contributes属性，将其配置成如下所示配置：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">    ...</span><br><span class="line">    <span class="attr">&quot;contributes&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;commands&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span> <span class="comment">// 命令</span></span><br><span class="line">            <span class="punctuation">&#123;</span></span><br><span class="line">                <span class="attr">&quot;command&quot;</span><span class="punctuation">:</span> <span class="string">&quot;tc-vform.openTcVForm&quot;</span><span class="punctuation">,</span> <span class="comment">// 实际执行的命令，一般为</span></span><br><span class="line">                <span class="attr">&quot;title&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Open TC VForm Designer&quot;</span><span class="punctuation">,</span> <span class="comment">// 命令的名称</span></span><br><span class="line">            <span class="punctuation">&#125;</span></span><br><span class="line">        <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;menus&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span> <span class="comment">// 表示右键菜单</span></span><br><span class="line">            <span class="attr">&quot;explorer/context&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">                <span class="punctuation">&#123;</span></span><br><span class="line">                    <span class="attr">&quot;command&quot;</span><span class="punctuation">:</span> <span class="string">&quot;tc-vform.openTcVForm&quot;</span><span class="punctuation">,</span> <span class="comment">// 点击后需要执行的命令</span></span><br><span class="line">                    <span class="attr">&quot;group&quot;</span><span class="punctuation">:</span> <span class="string">&quot;tc-group&quot;</span><span class="punctuation">,</span> <span class="comment">// 添加到哪一个分组</span></span><br><span class="line">                    <span class="attr">&quot;when&quot;</span><span class="punctuation">:</span> <span class="string">&quot;explorerResourceIsFolder&quot;</span> <span class="comment">// 仅在点击目标为文件夹时执行</span></span><br><span class="line">                <span class="punctuation">&#125;</span></span><br><span class="line">            <span class="punctuation">]</span></span><br><span class="line">        <span class="punctuation">&#125;</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line">    ...</span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>通过上述配置，我们设置了一个名为Open TC VForm Designer的命令，实际执行的是tc-vform.openTcVForm；我们还向工作区的右键菜单中添加了一项，指向的还是tc-vform.openTcVForm这个命令，而且是在目标为文件夹的时候才会展示菜单选项。编写好配置后运行调试，就可以在调试项目中测试我们添加的菜单选项了。<br><img src="/tecgo/images/20240227_4.png" alt="调试菜单选项"></p>
+<h4 id="注册命令和回调"><a href="#注册命令和回调" class="headerlink" title="注册命令和回调"></a>注册命令和回调</h4><p>openTcVForm函数返回了一个命令，后续调用context.subscriptions.push将命令添加到了订阅中，现在可以测试右键菜单的点击了。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">openTcVForm</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> vscode.<span class="property">commands</span>.<span class="title function_">registerCommand</span>(<span class="string">&#x27;tc-vform.openTcVForm&#x27;</span>, <span class="keyword">function</span> (<span class="params">uri</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (globalData.<span class="property">webViewPanel</span>) &#123;</span><br><span class="line">            vscode.<span class="property">window</span>.<span class="title function_">showErrorMessage</span>(<span class="string">&#x27;TC VForm is already exist!&#x27;</span>);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        vscode.<span class="property">window</span>.<span class="title function_">showInformationMessage</span>(<span class="string">&#x27;Open TC VForm!&#x27;</span>);</span><br><span class="line">        globalData.<span class="property">currentDocumentPath</span> = uri ? uri.<span class="property">path</span> : <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">        <span class="keyword">const</span> webViewPanel = vscode.<span class="property">window</span>.<span class="title function_">createWebviewPanel</span>(</span><br><span class="line">            globalData.<span class="property">extensionName</span>,</span><br><span class="line">            globalData.<span class="property">extensionName</span>,</span><br><span class="line">            vscode.<span class="property">ViewColumn</span>.<span class="property">One</span>,</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="attr">enableScripts</span>: <span class="literal">true</span>,</span><br><span class="line">                <span class="attr">enableForms</span>: <span class="literal">true</span>,</span><br><span class="line">                <span class="attr">enableCommandUris</span>: <span class="literal">true</span>,</span><br><span class="line">                <span class="attr">enableFindWidget</span>: <span class="literal">true</span>,</span><br><span class="line">            &#125;,</span><br><span class="line">        );</span><br><span class="line">        webViewPanel.<span class="property">webview</span>.<span class="title function_">onDidReceiveMessage</span>(</span><br><span class="line">            <span class="function">(<span class="params">message</span>) =&gt;</span> &#123;</span><br><span class="line">                <span class="title function_">msgDistribute</span>(message);</span><br><span class="line">            &#125;,</span><br><span class="line">            <span class="literal">undefined</span>,</span><br><span class="line">            globalData.<span class="property">context</span>.<span class="property">subscriptions</span>,</span><br><span class="line">        );</span><br><span class="line">        webViewPanel.<span class="title function_">onDidDispose</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">            globalData.<span class="property">webViewPanel</span> = <span class="literal">null</span>;</span><br><span class="line">        &#125;);</span><br><span class="line">        webViewPanel.<span class="property">webview</span>.<span class="property">html</span> = <span class="title function_">getHtml</span>(globalData.<span class="property">extensionName</span>, webViewPanel.<span class="property">webview</span>);</span><br><span class="line">        globalData.<span class="property">webViewPanel</span> = webViewPanel;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">... </span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> openTcVFormCommand = <span class="title function_">openTcVForm</span>();</span><br><span class="line">context.<span class="property">subscriptions</span>.<span class="title function_">push</span>(...[openTcVFormCommand]); <span class="comment">// 添加命令到订阅</span></span><br></pre></td></tr></table></figure>
+<p><img src="/tecgo/images/20240227_2.png" alt="打开tc vform面板"></p>
+<h3 id="发布扩展"><a href="#发布扩展" class="headerlink" title="发布扩展"></a>发布扩展</h3><p>发布扩展之前，我们需要做好几项准备工作。</p>
+<ul>
+<li>安装vsce</li>
+<li>准备一个发布者账号</li>
+<li>生成personal access token</li>
+</ul>
+<ol>
+<li>访问<a target="_blank" rel="noopener" href="https://login.live.com">https://login.live.com</a>，注册并登录Microsoft账号。</li>
+<li>访问<a target="_blank" rel="noopener" href="https://aka.ms/SignupAzureDevOps">SignupAzureDevOps</a>，创建一个Azure DevOps 组织，进入组织创建令牌。<br><img src="/tecgo/images/20240227_5.png" alt="打开tc vform面板"></li>
+<li>访问<a target="_blank" rel="noopener" href="https://aka.ms/vscode-create-publisher">https://aka.ms/vscode-create-publisher</a>创建一个发行方。发行方是有权发布 VS Code 插件的唯一标识，对应插件 package.json 文件中的publisher 字段。</li>
+<li>安装vsce<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i vsce -g</span><br></pre></td></tr></table></figure>
+使用第3步创建的发行方登录，输入第2步生成的token，登录成功后就可以发布插件了。<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">vsce login xxx</span><br><span class="line">vsce publish</span><br></pre></td></tr></table></figure></li>
+</ol>
+
+    
+
+    
+    <div class="page-reward">
+      <a href="javascript:void(0);" class="page-reward-btn tooltip-top" target="_self">
+        <div class="tooltip tooltip-east">
+          <span class="tooltip-item">
+            赏
+          </span>
+          <span class="tooltip-content">
+            <span class="tooltip-text">
+              <span class="tooltip-inner">
+                <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i
+                    class="icon icon-quo-right"></i></p>
+                <div class="reward-box">
+                  
+                  <div class="reward-box-item">
+                    <img class="reward-img" src="/tecgo/img/alipay.jpg">
+                    <span class="reward-type">支付宝</span>
+                  </div>
+                  
+                  
+                  <div class="reward-box-item">
+                    <img class="reward-img" src="/tecgo/img/weixin.png">
+                    <span class="reward-type">微信</span>
+                  </div>
+                  
+                </div>
+              </span>
+            </span>
+          </span>
+        </div>
+      </a>
+    </div>
+    
+
+    
+    <div class="declare"> 
+      <ul class="post-copyright">
+        <li>
+          <strong>本文作者：</strong>
+          Aimmarc
+        </li>
+        <li>
+          <strong>本文链接：</strong>
+          <a href="http://example.com/tecgo/2024/02/23/20240223.1/" title="记录一次vscode扩展开发过程" target="_blank">http://example.com/tecgo/2024/02/23/20240223.1/</a>
+        </li>
+        
+        <li>
+          <strong>版权声明： </strong>
           
+          本博客所有文章除特别声明外，均采用 <a href="https://github.com/JoeyBling/hexo-theme-yilia-plus/blob/master/LICENSE" rel="external nofollow" target="_blank">MIT</a> 许可协议。转载请注明出处！
+        </li>
+        
+      </ul>
+    </div>
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -261,62 +384,107 @@
 		</ul>
 	</div>
 
-          
+    
 
+    
+
+    
+    
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <!-- <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a> -->
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2024/02/23/20240223.1/" alt="微信分享二维码"> -->
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+
+    
+    <div class="clearfix"></div>
+  </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/tecgo/2024/02/23/hello-world/" class="archive-article-date">
-        <time datetime="2024-02-23T02:10:07.239Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-02-23</time>
-</a>
 
+
+<nav id="article-nav">
+  
+  
+    <a href="/tecgo/2024/02/23/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Hello World</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/tecgo/2024/02/23/hello-world/" target="_blank">Hello World</a>
-  
-    </h1>
-  
+        
+        
+    </div>
+</aside>
 
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
-        		</li>
-      		
-		</ul>
-	</div>
 
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
 
-    
+
+
+
+
+
+
+
 
 
           </div>
@@ -357,8 +525,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: true,

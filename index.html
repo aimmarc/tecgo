@@ -63,7 +63,7 @@
 <div class="intrude-less">
 	<header id="header" class="inner">
 		<a href="/tecgo/" class="profilepic">
-			<img src="/tecgo/img/head.jpg" class="js-avatar">
+			<img src="/tecgo/img/head.webp" class="js-avatar">
 		</a>
 		<hgroup>
 			<h1 class="header-author"><a href="/tecgo/">Aimmarc</a></h1>
@@ -144,7 +144,7 @@
 		<header id="header" class="inner">
 			<div class="profilepic">
 				<a href="/tecgo/">
-					<img src="/tecgo/img/head.jpg" class="js-avatar">
+					<img src="/tecgo/img/head.webp" class="js-avatar">
 				</a>
 			</div>
 			<hgroup>
@@ -214,6 +214,128 @@
             
 
   
+    <article id="post-20240223.1" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/tecgo/2024/02/23/20240223.1/" target="_blank">记录一次vscode扩展开发过程</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/tecgo/2024/02/23/20240223.1/" class="archive-article-date">
+        <time datetime="2024-02-23T03:47:42.155Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-02-23</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p>最近在做基于vform的动态表单工具时，发现vform官方文档中提供了一个vscode扩展应用，可以在vscode中直接打开vform设计器，在设计好表单后直接将模板文件保存到工作区中，大大提升了前端项目的开发效率，于是就构思是否自己也能实现一个类似的插件，结合动态表单工具，提升一定的工作效率？</p>
+<h3 id="功能描述"><a href="#功能描述" class="headerlink" title="功能描述"></a>功能描述</h3><p>期望在右键单击工作区文件夹的时候，能够在右键菜单中添加一项选项，点击选项后在vscode内部打开动态表单设计器，在设计器中将表单设计好后，使用设计器的保存文件到本地功能，将文件自动保存到当前文件夹中。<br><img src="/tecgo/images/20240227_2.png" alt="打开tc vform面板"></p>
+<h3 id="扩展开发"><a href="#扩展开发" class="headerlink" title="扩展开发"></a>扩展开发</h3><p>vscode扩展的开发主要依赖</p>
+<h4 id="环境准备-依赖安装"><a href="#环境准备-依赖安装" class="headerlink" title="环境准备&#x2F;依赖安装"></a>环境准备&#x2F;依赖安装</h4><p>安装yo、generator-code这两个npm库备用，后面我们将会使用到它们。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install yo generator-code -g</span><br></pre></td></tr></table></figure>
+<p>使用yo code命令来生成一个vscode扩展代码库</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yo code</span><br></pre></td></tr></table></figure>
+<p>等待命令执行完毕，会得到一个结构大致如下的目录，我们的扩展开发就将在这个目录中进行。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">|-- test</span><br><span class="line">|-- extension.js                     // 插件入口文件，插件的逻辑在此完成</span><br><span class="line">|-- CHANGELOG.md</span><br><span class="line">|-- package-lock.json</span><br><span class="line">|-- package.json</span><br><span class="line">|-- README.md                        // 插件说明 README，发布后会展示</span><br><span class="line">|-- jsconfig.json</span><br><span class="line">|-- .eslintrc.json</span><br><span class="line">|-- vsc-extension-quickstart.md</span><br></pre></td></tr></table></figure>
+<h4 id="运行和调试"><a href="#运行和调试" class="headerlink" title="运行和调试"></a>运行和调试</h4><p>直接使用vscode打开这个目录，依次选择运行-&gt;启动调试，vscode就会使用调试模式运行当前插件。<br><img src="/tecgo/images/20240227_3.png" alt="运行调试"></p>
+<h4 id="创建右键菜单和命令"><a href="#创建右键菜单和命令" class="headerlink" title="创建右键菜单和命令"></a>创建右键菜单和命令</h4><p>在package.json中，找到contributes属性，将其配置成如下所示配置：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">    ...</span><br><span class="line">    <span class="attr">&quot;contributes&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;commands&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span> <span class="comment">// 命令</span></span><br><span class="line">            <span class="punctuation">&#123;</span></span><br><span class="line">                <span class="attr">&quot;command&quot;</span><span class="punctuation">:</span> <span class="string">&quot;tc-vform.openTcVForm&quot;</span><span class="punctuation">,</span> <span class="comment">// 实际执行的命令，一般为</span></span><br><span class="line">                <span class="attr">&quot;title&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Open TC VForm Designer&quot;</span><span class="punctuation">,</span> <span class="comment">// 命令的名称</span></span><br><span class="line">            <span class="punctuation">&#125;</span></span><br><span class="line">        <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;menus&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span> <span class="comment">// 表示右键菜单</span></span><br><span class="line">            <span class="attr">&quot;explorer/context&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">                <span class="punctuation">&#123;</span></span><br><span class="line">                    <span class="attr">&quot;command&quot;</span><span class="punctuation">:</span> <span class="string">&quot;tc-vform.openTcVForm&quot;</span><span class="punctuation">,</span> <span class="comment">// 点击后需要执行的命令</span></span><br><span class="line">                    <span class="attr">&quot;group&quot;</span><span class="punctuation">:</span> <span class="string">&quot;tc-group&quot;</span><span class="punctuation">,</span> <span class="comment">// 添加到哪一个分组</span></span><br><span class="line">                    <span class="attr">&quot;when&quot;</span><span class="punctuation">:</span> <span class="string">&quot;explorerResourceIsFolder&quot;</span> <span class="comment">// 仅在点击目标为文件夹时执行</span></span><br><span class="line">                <span class="punctuation">&#125;</span></span><br><span class="line">            <span class="punctuation">]</span></span><br><span class="line">        <span class="punctuation">&#125;</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line">    ...</span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>通过上述配置，我们设置了一个名为Open TC VForm Designer的命令，实际执行的是tc-vform.openTcVForm；我们还向工作区的右键菜单中添加了一项，指向的还是tc-vform.openTcVForm这个命令，而且是在目标为文件夹的时候才会展示菜单选项。编写好配置后运行调试，就可以在调试项目中测试我们添加的菜单选项了。<br><img src="/tecgo/images/20240227_4.png" alt="调试菜单选项"></p>
+<h4 id="注册命令和回调"><a href="#注册命令和回调" class="headerlink" title="注册命令和回调"></a>注册命令和回调</h4><p>openTcVForm函数返回了一个命令，后续调用context.subscriptions.push将命令添加到了订阅中，现在可以测试右键菜单的点击了。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">openTcVForm</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> vscode.<span class="property">commands</span>.<span class="title function_">registerCommand</span>(<span class="string">&#x27;tc-vform.openTcVForm&#x27;</span>, <span class="keyword">function</span> (<span class="params">uri</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (globalData.<span class="property">webViewPanel</span>) &#123;</span><br><span class="line">            vscode.<span class="property">window</span>.<span class="title function_">showErrorMessage</span>(<span class="string">&#x27;TC VForm is already exist!&#x27;</span>);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        vscode.<span class="property">window</span>.<span class="title function_">showInformationMessage</span>(<span class="string">&#x27;Open TC VForm!&#x27;</span>);</span><br><span class="line">        globalData.<span class="property">currentDocumentPath</span> = uri ? uri.<span class="property">path</span> : <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">        <span class="keyword">const</span> webViewPanel = vscode.<span class="property">window</span>.<span class="title function_">createWebviewPanel</span>(</span><br><span class="line">            globalData.<span class="property">extensionName</span>,</span><br><span class="line">            globalData.<span class="property">extensionName</span>,</span><br><span class="line">            vscode.<span class="property">ViewColumn</span>.<span class="property">One</span>,</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="attr">enableScripts</span>: <span class="literal">true</span>,</span><br><span class="line">                <span class="attr">enableForms</span>: <span class="literal">true</span>,</span><br><span class="line">                <span class="attr">enableCommandUris</span>: <span class="literal">true</span>,</span><br><span class="line">                <span class="attr">enableFindWidget</span>: <span class="literal">true</span>,</span><br><span class="line">            &#125;,</span><br><span class="line">        );</span><br><span class="line">        webViewPanel.<span class="property">webview</span>.<span class="title function_">onDidReceiveMessage</span>(</span><br><span class="line">            <span class="function">(<span class="params">message</span>) =&gt;</span> &#123;</span><br><span class="line">                <span class="title function_">msgDistribute</span>(message);</span><br><span class="line">            &#125;,</span><br><span class="line">            <span class="literal">undefined</span>,</span><br><span class="line">            globalData.<span class="property">context</span>.<span class="property">subscriptions</span>,</span><br><span class="line">        );</span><br><span class="line">        webViewPanel.<span class="title function_">onDidDispose</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">            globalData.<span class="property">webViewPanel</span> = <span class="literal">null</span>;</span><br><span class="line">        &#125;);</span><br><span class="line">        webViewPanel.<span class="property">webview</span>.<span class="property">html</span> = <span class="title function_">getHtml</span>(globalData.<span class="property">extensionName</span>, webViewPanel.<span class="property">webview</span>);</span><br><span class="line">        globalData.<span class="property">webViewPanel</span> = webViewPanel;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">... </span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> openTcVFormCommand = <span class="title function_">openTcVForm</span>();</span><br><span class="line">context.<span class="property">subscriptions</span>.<span class="title function_">push</span>(...[openTcVFormCommand]); <span class="comment">// 添加命令到订阅</span></span><br></pre></td></tr></table></figure>
+<p><img src="/tecgo/images/20240227_2.png" alt="打开tc vform面板"></p>
+<h3 id="发布扩展"><a href="#发布扩展" class="headerlink" title="发布扩展"></a>发布扩展</h3><p>发布扩展之前，我们需要做好几项准备工作。</p>
+<ul>
+<li>安装vsce</li>
+<li>准备一个发布者账号</li>
+<li>生成personal access token</li>
+</ul>
+<ol>
+<li>访问<a target="_blank" rel="noopener" href="https://login.live.com">https://login.live.com</a>，注册并登录Microsoft账号。</li>
+<li>访问<a target="_blank" rel="noopener" href="https://aka.ms/SignupAzureDevOps">SignupAzureDevOps</a>，创建一个Azure DevOps 组织，进入组织创建令牌。<br><img src="/tecgo/images/20240227_5.png" alt="打开tc vform面板"></li>
+<li>访问<a target="_blank" rel="noopener" href="https://aka.ms/vscode-create-publisher">https://aka.ms/vscode-create-publisher</a>创建一个发行方。发行方是有权发布 VS Code 插件的唯一标识，对应插件 package.json 文件中的publisher 字段。</li>
+<li>安装vsce<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i vsce -g</span><br></pre></td></tr></table></figure>
+使用第3步创建的发行方登录，输入第2步生成的token，登录成功后就可以发布插件了。<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">vsce login xxx</span><br><span class="line">vsce publish</span><br></pre></td></tr></table></figure></li>
+</ol>
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">vscode</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">vscode扩展</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">前端技术</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/tecgo/2024/02/23/20240223.1/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -267,6 +389,17 @@
   <div class="article-info article-info-index">
     
     
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
     
 
     
@@ -428,6 +561,22 @@
             <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
           </label>
           <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">vscode</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">vscode扩展</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">前端技术</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+              </li>
             
             <div class="clearfix"></div>
           </ul>
@@ -536,7 +685,7 @@
     	<section class="tools-section tools-section-me" q-show="aboutme">
         
           
-  	  		<div class="aboutme-wrap" id="aboutme">主要涉及技术：<br>Java后端开发、聚合支付、<br>公众号开发、开源爱好者、Linux<br><br>联系QQ:2434387555<br><br>很惭愧<br><br>只做了一点微小的工作<br>谢谢大家</div>
+  	  		<div class="aboutme-wrap" id="aboutme">前端工程师<br>联系QQ：965964317<br>爱好：唱跳Rap、撸代码</div>
   	  	
     	</section>
     
